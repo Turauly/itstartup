@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 localStorage.setItem("currentUser", name); // Қазіргі қолданушыны сақтау
 
                 alert("Тіркелу сәтті аяқталды!");
-                window.location.href = "bastybet.html"; // Басты бетке бағыттау
+                window.location.href = "index.html"; // Басты бетке бағыттау
             }
         });
     }
