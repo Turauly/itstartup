@@ -10,62 +10,53 @@ document.addEventListener("DOMContentLoaded", function () {
     const userDisplay = document.getElementById("userDisplay");
     const logoutBtn = document.getElementById("logoutBtn");
     const usersList = document.getElementById("usersList");
-    const usersTable = document.getElementById("usersTable"); // 🔹 Админ көретін бөлім
+    const usersTable = document.getElementById("usersTable");
 
-    // ✅ Тіркелген қолданушыны көрсету
     const currentUser = localStorage.getItem("currentUser");
-    const currentRole = localStorage.getItem("currentRole"); // Рольді тексеру (админ бе, қолданушы ма)
+    const currentRole = localStorage.getItem("currentRole");
 
     if (currentUser) {
         if (userDisplay) {
             userDisplay.textContent = `Қош келдіңіз, ${currentUser}!`;
         }
         if (logoutBtn) {
-            logoutBtn.style.display = "inline-block"; // Шығу батырмасын көрсету
+            logoutBtn.style.display = "inline-block";
         }
     }
 
-    // ✅ Тіркелу формасы
     if (registerForm) {
         registerForm.addEventListener("submit", function (event) {
             event.preventDefault();
-
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
-
-            let role = "user"; // Әдепкі мән - қолданушы
+            let role = "user";
             if (name.toLowerCase() === "admin") {
-                role = "admin"; // Егер қолданушының аты "admin" болса, ол админ болады
+                role = "admin";
             }
-
             if (name && email && password) {
                 let users = JSON.parse(localStorage.getItem("users")) || [];
                 users.push({ name, email, role });
                 localStorage.setItem("users", JSON.stringify(users));
                 localStorage.setItem("currentUser", name);
-                localStorage.setItem("currentRole", role); // 🔹 Рөлді сақтау
-
+                localStorage.setItem("currentRole", role);
                 alert("Тіркелу сәтті аяқталды!");
-                window.location.href = "bastybet.html"; // Басты бетке бағыттау
+                window.location.href = "bastybet.html";
             }
         });
     }
 
-    // ✅ Шығу (logout) функциясы
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function () {
             localStorage.removeItem("currentUser");
-            localStorage.removeItem("currentRole"); // 🔹 Рөлді өшіру
-            window.location.href = "login.html"; // Кіру бетіне бағыттау
+            localStorage.removeItem("currentRole");
+            window.location.href = "login.html";
         });
     }
 
-    // ✅ Тіркелген қолданушылар тізімін шығару (тек **АДМИН** көре алады)
     if (usersTable) {
         if (currentRole === "admin") {
             let users = JSON.parse(localStorage.getItem("users")) || [];
-
             if (users.length === 0) {
                 usersList.innerHTML = "<tr><td colspan='2'>Әзірге тіркелген қолданушылар жоқ</td></tr>";
             } else {
@@ -76,24 +67,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         } else {
-            usersTable.style.display = "none"; // Егер админ болмаса, кестені жасыру
+            usersTable.style.display = "none";
         }
+    }
+
+    // ✅ Магазин батырмасын басқанда келесі бетке өту
+    const storeButton = document.querySelector("#storeButton");
+    if (storeButton) {
+        storeButton.addEventListener("click", function () {
+            window.location.href = "store_page.html"; // Келесі бетке бағыттау
+        });
     }
 });
 
-// ✅ Келесі қадамға өту функциясы
 function nextStep(step) {
     document.querySelectorAll(".step").forEach(div => div.classList.add("hidden"));
     document.getElementById(`step${step}`).classList.remove("hidden");
 }
 
-// ✅ Өнімді таңдау
 function selectProduct(productName) {
     localStorage.setItem("selectedProduct", productName);
     nextStep(5);
 }
 
-// ✅ Қорытындыны көрсету
 function showSummary() {
     let summary = `
         <h3>Сіз мына тапсырысты бердіңіз:</h3>
