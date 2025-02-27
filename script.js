@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const products = {
-        "Киім": [{ name: "Шорты", img: "shorts.png" }, { name: "Футболка", png: "tshirt.png" }, { name: "Пальто", png: "Palto.png" }],
+        "Киім": [{ name: "Шорты", img: "shorts.png" }, { name: "Футболка", png: "tshirt.png" }],
         "Азық-түлік": [{ name: "Нан", img: "bread.png" }, { name: "Сүт", png: "milk.png" }],
         "Тамақ": [{ name: "Бургер", img: "burger.png" }, { name: "Пицца", png: "pizza.png" }],
         "Напитки": [{ name: "Шай", img: "tea.png" }, { name: "Кофе", png: "coffee.png" }],
