@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const products = {
-        "Киім": [{ name: "Шорты", img: "shorts.jpg" }, { name: "Футболка", img: "tshirt.jpg" }],
-        "Азық-түлік": [{ name: "Нан", img: "bread.jpg" }, { name: "Сүт", img: "milk.jpg" }],
-        "Тамақ": [{ name: "Бургер", img: "burger.jpg" }, { name: "Пицца", img: "pizza.jpg" }],
-        "Напитки": [{ name: "Шай", img: "tea.jpg" }, { name: "Кофе", img: "coffee.jpg" }],
-        "Дәрі-дәрмек": [{ name: "Парацетамол", img: "paracetamol.jpg" }, { name: "Аспирин", img: "aspirin.jpg" }]
+        "Киім": [{ name: "Шорты", img: "shorts.png" }, { name: "Футболка", png: "tshirt.png" }],
+        "Азық-түлік": [{ name: "Нан", img: "bread.png" }, { name: "Сүт", png: "milk.png" }],
+        "Тамақ": [{ name: "Бургер", img: "burger.png" }, { name: "Пицца", png: "pizza.png" }],
+        "Напитки": [{ name: "Шай", img: "tea.png" }, { name: "Кофе", png: "coffee.png" }],
+        "Дәрі-дәрмек": [{ name: "Парацетамол", png: "paracetamol.png" }, { name: "Аспирин", img: "aspirin.png" }]
     };
 
     // ✅ Санатты таңдаған кезде дүкендер тізімін шығару
