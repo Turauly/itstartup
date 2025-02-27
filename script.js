@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Дүкен, өнім түрлері және тауарлар
     const stores = {
-        store: ["Азиз", "Мұхаммед", "Береке"],
-        cafe: ["Burger House", "Coffee Time", "Pizza Place"],
+        store: ["Iftar", "Mini market," "Береке", "Jana Magazin", "Halyk Market"],
+        cafe: ["Burger House", "Coffee Time", "Pizza Place", "Azizbek тойханасы"],
         pharmacy: ["Дәру", "Жасыл дәріхана", "Шипа"]
     };
 
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const products = {
-        "Киім": [{ name: "Шорты", img: "shorts.png" }, { name: "Футболка", png: "tshirt.png" }],
+        "Киім": [{ name: "Шорты", img: "shorts.png" }, { name: "Футболка", png: "tshirt.png" }, { name: "Пальто", png: "Palto.png" }],
         "Азық-түлік": [{ name: "Нан", img: "bread.png" }, { name: "Сүт", png: "milk.png" }],
         "Тамақ": [{ name: "Бургер", img: "burger.png" }, { name: "Пицца", png: "pizza.png" }],
         "Напитки": [{ name: "Шай", img: "tea.png" }, { name: "Кофе", png: "coffee.png" }],
