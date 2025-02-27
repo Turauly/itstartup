@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eski Ikan Delivery - Жаңалықтар</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        .news-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+        }
+        .news-item h3 { margin-top: 0; }
+        .search-bar { width: 100%; padding: 8px; margin-bottom: 10px; }
+        .filter-section { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <div class="logo-title">
+                    <img src="logo.png" alt="Eski Ikan Delivery Логотипі" class="logo">
+                    <h1>Жаңалықтар</h1>
+                </div>
+                <nav>
+                    <a href="bastybet.html">Басты бет</a>
+                    <a href="login.html">Жеке Аккаунт</a>
+                    <a href="form.html">Тапсырыс Жасау</a>
+                    <a href="status.html">Тапсырыс Статусы</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="news">
+            <h2>Соңғы жаңалықтар</h2>
+
+            <!-- Іздеу жолағы -->
+            <input type="text" id="newsSearch" class="search-bar" placeholder="Жаңалықтарды іздеу..." onkeyup="searchNews()">
+            
+            <!-- Санат бойынша сұрыптау -->
+            <div class="filter-section">
+                <label for="categoryFilter">Санатты таңдаңыз:</label>
+                <select id="categoryFilter" onchange="filterNews()">
+                    <option value="all">Барлығы</option>
+                    <option value="delivery">Жеткізу</option>
+                    <option value="discount">Жеңілдіктер</option>
+                    <option value="store">Жаңа дүкендер</option>
+                </select>
+            </div>
+
+            <!-- Жаңалықтар тізімі -->
+            <div id="newsList">
+                <div class="news-item" data-category="delivery">
+                    <h3>🚀 Жеткізу уақыты тездетілді!</h3>
+                    <p>Енді тапсырысыңызды 30 минут ішінде ала аласыз.</p>
+                    <p><em>Күні: 1 наурыз 2025</em></p>
+                </div>
+                
+                <div class="news-item" data-category="discount">
+                    <h3>💰 50% жеңілдік апталығы басталды</h3>
+                    <p>Барлық кафелер мен мейрамханаларда үлкен жеңілдіктер!</p>
+                    <p><em>Күні: 27 ақпан 2025</em></p>
+                </div>
+
+                <div class="news-item" data-category="store">
+                    <h3>🏪 Жаңа дүкен ашылды!</h3>
+                    <p>Ескі Иқанда жаңа "Азиз" азық-түлік дүкені ашылды.</p>
+                    <p><em>Күні: 20 ақпан 2025</em></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Eski Ikan Delivery. Барлық құқықтар қорғалған.</p>
+    </footer>
+</body>
+</html>

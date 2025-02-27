@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eski Ikan Delivery - Тапсырыс беру</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container">
+                <div class="logo-title">
+                    <img src="logo.png" alt="Eski Ikan Delivery Логотипі" class="logo">
+                    <h1>Тапсырыс беру</h1>
+                </div>
+                <nav>
+                    <a href="bastybet.html">Басты бет</a>
+                    <a href="status.html">Тапсырыс Статусы</a>
+                    <a href="news.html">Жаңалықтар</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="order-form">
+            <h2>Тапсырыс беру</h2>
+            <form id="orderForm">
+                <!-- 1-қадам: Санатты таңдау -->
+                <div class="step" id="step1">
+                    <h3>Санатты таңдаңыз:</h3>
+                    <div class="category-options">
+                        <div class="category-box" onclick="selectCategory('store')">
+                            <img src="store.png" alt="Магазин">
+                            <p>Магазин</p>
+                        </div>
+                        <div class="category-box" onclick="selectCategory('cafe')">
+                            <img src="cafe.png" alt="Кафе">
+                            <p>Кафе</p>
+                        </div>
+                        <div class="category-box" onclick="selectCategory('pharmacy')">
+                            <img src="pharmacy.png" alt="Дәріхана">
+                            <p>Дәріхана</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2-қадам: Дүкенді таңдау -->
+                <div class="step hidden" id="step2">
+                    <h3>Дүкенді таңдаңыз:</h3>
+                    <select id="store" onchange="nextStep(3)">
+                        <option value="">Алдымен санатты таңдаңыз</option>
+                    </select>
+                    <button type="button" class="btn back-btn" onclick="prevStep(1)">Артқа</button>
+                </div>
+
+                <!-- 3-қадам: Өнім түрін таңдау -->
+                <div class="step hidden" id="step3">
+                    <h3>Өнім түрі:</h3>
+                    <select id="subcategory" onchange="nextStep(4)">
+                        <option value="">Алдымен дүкенді таңдаңыз</option>
+                    </select>
+                    <button type="button" class="btn back-btn" onclick="prevStep(2)">Артқа</button>
+                </div>
+
+                <!-- 4-қадам: Өнімді таңдау (суреттермен бірге) -->
+                <div class="step hidden" id="step4">
+                    <h3>Өнімді таңдаңыз:</h3>
+                    <div id="productContainer" class="food-container"></div>
+                    <button type="button" class="btn back-btn" onclick="prevStep(3)">Артқа</button>
+                </div>
+
+                <!-- 5-қадам: Саны мен ақпарат -->
+                <div class="step hidden" id="step5">
+                    <h3>Өнім саны</h3>
+                    <label for="quantity">Саны:</label>
+                    <input type="number" id="quantity" min="1" required>
+                    <button type="button" class="btn" onclick="nextStep(6)">Келесі</button>
+                    <button type="button" class="btn back-btn" onclick="prevStep(4)">Артқа</button>
+                </div>
+
+                <!-- 6-қадам: Қолданушы мәліметтері -->
+                <div class="step hidden" id="step6">
+                    <h3>Жеткізу мәліметтері</h3>
+                    <label for="name">Аты-жөніңіз:</label>
+                    <input type="text" id="name" required>
+
+                    <label for="phone">Телефон нөміріңіз:</label>
+                    <input type="tel" id="phone" required>
+
+                    <label for="address">Жеткізу мекенжайы:</label>
+                    <input type="text" id="address" required>
+
+                    <label for="time">Жеткізу уақытын таңдаңыз:</label>
+                    <input type="time" id="time" required>
+
+                    <button type="button" id="continueBtn" class="btn" onclick="showSummary()">Жалғастыру</button>
+                    <button type="button" class="btn back-btn" onclick="prevStep(5)">Артқа</button>
+                </div>
+
+                <!-- Қорытынды қадам -->
+                <div id="summaryContainer" class="step hidden">
+                    <h3>Сіз мына тапсырысты бердіңіз:</h3>
+                    <p id="summaryText"></p>
+                    <button type="submit" class="btn">Тапсырысты жіберу</button>
+                    <button type="button" class="btn back-btn" onclick="prevStep(6)">Артқа</button>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Eski Ikan Delivery. Барлық құқықтар қорғалған.</p>
+    </footer>
+
+    <script>
+        function prevStep(step) {
+            document.querySelectorAll(".step").forEach(div => div.classList.add("hidden"));
+            document.getElementById(`step${step}`).classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>

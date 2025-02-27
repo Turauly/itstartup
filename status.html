@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eski Ikan Delivery - Тапсырыс статусы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Тапсырысыңыздың ағымдағы статусы</h1>
+        </header>
+
+        <section class="status-section">
+            <label for="orderId">Тапсырыс ID енгізіңіз:</label>
+            <input type="text" id="orderId">
+            <button onclick="checkOrderStatus()">Статусты тексеру</button>
+
+            <h2>Статус:</h2>
+            <p id="statusText">Тапсырыс ID енгізіп, тексеріңіз.</p>
+
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        async function checkOrderStatus() {
+            const orderId = document.getElementById("orderId").value;
+
+            if (!orderId) {
+                alert("Тапсырыс ID енгізіңіз!");
+                return;
+            }
+
+            const response = await fetch(`http://localhost:3000/order-status/${orderId}`);
+            const data = await response.json();
+
+            if (response.ok) {
+                document.getElementById("statusText").innerText = `Статус: ${data.status}`;
+
+                let progressValue = 0;
+                if (data.status === "Қабылданды") progressValue = 25;
+                if (data.status === "Дайындалуда") progressValue = 50;
+                if (data.status === "Жеткізілуде") progressValue = 75;
+                if (data.status === "Аяқталды") progressValue = 100;
+
+                document.getElementById("progress").style.width = progressValue + "%";
+            } else {
+                alert("Тапсырыс табылмады!");
+            }
+        }
+    </script>
+</body>
+</html>

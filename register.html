@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тіркелу</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        async function sendVerificationCode() {
+            let email = document.getElementById("email").value;
+            if (!email) {
+                alert("Email енгізіңіз!");
+                return;
+            }
+
+            const response = await fetch("http://localhost:3000/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                sessionStorage.setItem("verificationCode", data.verificationCode);
+                alert("Email-ге растау коды жіберілді!");
+            } else {
+                alert("Email жіберу кезінде қате орын алды!");
+            }
+        }
+
+        async function registerUser(event) {
+            event.preventDefault();
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let password = document.getElementById("password").value;
+            let enteredCode = document.getElementById("verificationCode").value;
+            let correctCode = sessionStorage.getItem("verificationCode");
+
+            if (!username || !email || !phone || !password || !enteredCode) {
+                alert("Барлық өрістерді толтырыңыз!");
+                return;
+            }
+
+            if (enteredCode !== correctCode) {
+                alert("Растау коды дұрыс емес!");
+                return;
+            }
+
+            const response = await fetch("http://localhost:3000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, email, phone, password })
+            });
+
+            if (response.ok) {
+                alert("Тіркелу сәтті аяқталды!");
+                window.location.href = "login.html";
+            } else {
+                alert("Тіркелу кезінде қате орын алды!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Тіркелу</h1>
+        </header>
+
+        <section class="register-form">
+            <form onsubmit="registerUser(event)">
+                <label for="username">Атыңыз:</label>
+                <input type="text" id="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                <button type="button" onclick="sendVerificationCode()">Код жіберу</button>
+
+                <label for="verificationCode">Растау коды:</label>
+                <input type="text" id="verificationCode" required>
+
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" required>
+
+                <label for="password">Құпиясөз:</label>
+                <input type="password" id="password" required>
+
+                <button type="submit" class="btn">Тіркелу</button>
+            </form>
+            <p>Аккаунтыңыз бар ма? <a href="login.html">Жүйеге кіру</a></p>
+        </section>
+    </div>
+</body>
+</html>
